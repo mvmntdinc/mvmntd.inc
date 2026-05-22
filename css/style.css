@@ -265,9 +265,10 @@ body::before {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(4.5rem, 14vw, 13rem);
-  line-height: 0.88;
-  letter-spacing: -0.01em;
+  font-size: clamp(3rem, 9vw, 8rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
   color: var(--white);
   animation: fadeDown 1s 0.35s ease forwards;
   opacity: 0;
