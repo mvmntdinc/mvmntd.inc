@@ -1111,7 +1111,13 @@ footer {
 
 @media (max-width: 768px) {
   #lancamentos { padding-top: 90px; }
-  #navbar { padding: 16px 24px; }
+  #navbar {
+    padding: 16px 24px;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(204,0,0,0.25);
+  }
   #navbar.scrolled { padding: 12px 24px; }
 
   .nav-links, .nav-cta { display: none; }
@@ -1141,8 +1147,12 @@ footer {
   .form-row { grid-template-columns: 1fr; }
 
   .releases-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+
+  .release-card--spotify iframe {
+    height: 352px !important;
   }
 
   footer { padding: 32px 24px; }
