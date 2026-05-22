@@ -4,6 +4,37 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ── HERO SLIDESHOW ── */
+  const slides = document.querySelectorAll('.hero-slideshow .slide');
+  const dots   = document.querySelectorAll('.slide-dots .dot');
+  let current  = 0;
+  let slideInterval;
+
+  function goToSlide(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function nextSlide() {
+    goToSlide(current + 1);
+  }
+
+  if (slides.length > 0) {
+    slideInterval = setInterval(nextSlide, 5000);
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        goToSlide(i);
+        slideInterval = setInterval(nextSlide, 5000);
+      });
+    });
+  }
+
+
   /* ── NAVBAR SCROLL ── */
   const navbar = document.getElementById('navbar');
 

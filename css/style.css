@@ -59,6 +59,144 @@ img {
 ::-webkit-scrollbar-track { background: var(--black); }
 ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
 
+/* ── SLIDESHOW ── */
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  transform: scale(1.04);
+  animation: none;
+}
+
+.slide.active {
+  opacity: 1;
+  animation: kenBurns 7s ease forwards;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.25) 100%),
+    linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 40%);
+}
+
+/* Dots */
+.slide-dots {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: var(--red);
+  width: 22px;
+  border-radius: 3px;
+}
+
+/* Badge lançamento */
+.hero-release-badge {
+  position: absolute;
+  bottom: 120px;
+  right: 64px;
+  z-index: 10;
+  animation: fadeDown 1s 0.8s ease forwards;
+  opacity: 0;
+}
+
+.badge-pulse {
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(204,0,0,0.4);
+  animation: badgePulse 2.5s ease-in-out infinite;
+}
+
+.badge-inner {
+  background: rgba(0,0,0,0.82);
+  border: 1px solid rgba(204,0,0,0.6);
+  backdrop-filter: blur(12px);
+  padding: 20px 24px;
+  min-width: 220px;
+}
+
+.badge-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.badge-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.badge-artist {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--white);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.badge-artist span {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.badge-cta {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--red);
+  transition: color 0.2s, letter-spacing 0.2s;
+}
+
+.badge-cta:hover {
+  color: var(--white);
+  letter-spacing: 0.3em;
+}
+
+@keyframes kenBurns {
+  from { transform: scale(1.04); }
+  to   { transform: scale(1); }
+}
+
+@keyframes badgePulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.9; transform: scale(1.02); }
+}
+
 /* ── NOISE OVERLAY ── */
 body::before {
   content: '';
@@ -218,17 +356,10 @@ body::before {
   background: var(--black);
 }
 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(204,0,0,0.06) 0%, transparent 70%),
-    linear-gradient(180deg, #000 0%, #0a0000 50%, #000 100%);
-}
-
 .hero-scanlines {
   position: absolute;
   inset: 0;
+  z-index: 2;
   background: repeating-linear-gradient(
     0deg,
     transparent,
@@ -241,36 +372,33 @@ body::before {
 
 .hero-content {
   position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 0 24px;
-}
-
-.hero-logo {
-  width: clamp(140px, 22vw, 280px);
-  margin: 0 auto 32px;
-  animation: fadeDown 1s ease forwards;
-  opacity: 0;
+  z-index: 10;
+  text-align: left;
+  padding: 0 64px;
+  max-width: 900px;
+  width: 100%;
+  margin-right: auto;
 }
 
 .hero-label {
   font-family: var(--font-display);
-  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
-  letter-spacing: 0.5em;
+  font-size: 0.78rem;
+  letter-spacing: 0.45em;
   color: var(--red);
-  margin-bottom: 16px;
-  animation: fadeDown 1s 0.2s ease forwards;
+  margin-bottom: 20px;
+  animation: fadeDown 1s 0.1s ease forwards;
   opacity: 0;
+  text-transform: uppercase;
 }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 9vw, 8rem);
-  line-height: 1;
-  letter-spacing: 0.02em;
+  font-size: clamp(5rem, 16vw, 14rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
   white-space: nowrap;
   color: var(--white);
-  animation: fadeDown 1s 0.35s ease forwards;
+  animation: fadeDown 1s 0.25s ease forwards;
   opacity: 0;
 }
 
@@ -278,22 +406,37 @@ body::before {
   color: var(--red);
 }
 
-.hero-sub {
-  font-size: clamp(0.8rem, 1.3vw, 1rem);
-  font-weight: 300;
-  letter-spacing: 0.25em;
+.hero-artist {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  letter-spacing: 0.3em;
+  color: var(--white);
+  margin-top: 12px;
+  animation: fadeDown 1s 0.4s ease forwards;
+  opacity: 0;
+}
+
+.hero-chart {
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
   color: var(--text-muted);
-  margin-top: 20px;
   text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 4px;
   animation: fadeDown 1s 0.5s ease forwards;
   opacity: 0;
+}
+
+.hero-chart span {
+  color: var(--red);
+  font-weight: 700;
 }
 
 .hero-cta-group {
   display: flex;
   gap: 16px;
-  justify-content: center;
-  margin-top: 48px;
+  justify-content: flex-start;
+  margin-top: 40px;
   animation: fadeDown 1s 0.65s ease forwards;
   opacity: 0;
 }
@@ -908,7 +1051,26 @@ footer {
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
 
-  .hero-cta-group { flex-direction: column; align-items: center; }
+  .hero-content {
+    text-align: center;
+    padding: 0 24px;
+    margin: 0 auto;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-release-badge {
+    bottom: auto;
+    top: auto;
+    right: auto;
+    position: relative;
+    margin: 24px auto 0;
+    width: fit-content;
+  }
 
   .form-row { grid-template-columns: 1fr; }
 

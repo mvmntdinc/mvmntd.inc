@@ -56,24 +56,42 @@
        HERO
   ════════════════════════════════════════ -->
   <section id="hero">
-    <div class="hero-bg"></div>
+
+    <!-- Slideshow background -->
+    <div class="hero-slideshow" aria-hidden="true">
+      <div class="slide active" style="background-image: url('assets/slide1.jpg')"></div>
+      <div class="slide" style="background-image: url('assets/slide2.jpg')"></div>
+      <div class="slide" style="background-image: url('assets/slide3.jpg')"></div>
+      <div class="slide" style="background-image: url('assets/slide4.jpg')"></div>
+    </div>
+
+    <!-- Overlays -->
+    <div class="hero-overlay"></div>
     <div class="hero-scanlines"></div>
 
+    <!-- Conteúdo principal — lançamento -->
     <div class="hero-content">
-      <img src="assets/logo.png" alt="MVMNTD INC" class="hero-logo" />
-
-      <p class="hero-label">Rio de Janeiro · Brasil</p>
+      <p class="hero-label">🔴 &nbsp;NOVO LANÇAMENTO</p>
 
       <h1 class="hero-title">
-        MVMNTD <span>INC</span>
+        89 <span>BALA</span>
       </h1>
 
-      <p class="hero-sub">Trap &nbsp;·&nbsp; Rap &nbsp;·&nbsp; Funk &nbsp;·&nbsp; Cultura</p>
+      <p class="hero-artist">GOLPS</p>
+      <p class="hero-chart">NARUA <span>#1</span></p>
 
       <div class="hero-cta-group">
-        <a href="#lancamentos" class="btn-primary">VER LANÇAMENTOS</a>
-        <a href="#contato" class="btn-ghost">ENVIAR DEMO</a>
+        <a href="https://youtu.be/tL3qEV-wG_0" target="_blank" rel="noopener" class="btn-primary">▶ &nbsp;ASSISTIR CLIPE</a>
+        <a href="https://open.spotify.com/intl-pt/album/4vIWyqOKShdjbjrx4cEBY5?si=IbnQDAAOSkav1SXb56R38w" target="_blank" rel="noopener" class="btn-ghost">OUVIR NO SPOTIFY</a>
       </div>
+    </div>
+
+    <!-- Dots indicadores -->
+    <div class="slide-dots" aria-hidden="true">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
 
     <div class="hero-scroll-hint" aria-hidden="true">
